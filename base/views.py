@@ -51,6 +51,7 @@ def search_topics(query):
 
 
 @login_required(login_url='/login')
+@login_required(login_url='/login')
 def search(request):
     query = request.GET.get('query', '').strip()
     if query:
@@ -71,17 +72,16 @@ def search(request):
                     return render(request, 'base/lecture.html', {'message': "Topic not found. Please check your spelling or the data you're searching does not exist."})
                 # Concatenate the scraped paragraphs into a single string
                 scraped_data = ' '.join(all_paragraphs)
-                # call_command('summarize') 
+                # Save the scraped data to the database
                 topics = Topic.objects.create(name=query, scraped_data=scraped_data)
-                
-                # topics.save()
+                # Call the summarization command
+                call_command('summarize')
                 # Retrieve the updated topic with summary
                 topics = Topic.objects.filter(name__icontains=query)
-                
                 return render(request, 'base/lecture.html',  {'topics': topics})
     else:
         return redirect('home')  # Redirect to home if no query is provided
-
+    
 def get_query(request):
     if request.method == 'GET':
         query = request.GET.get('query', '').strip()
