@@ -14,7 +14,8 @@ def scraper(url, search_term):
     chrome_options.add_argument("--headless")
 
     # Initialize Chrome webdriver with options
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
+    #driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
+    driver = webdriver.Chrome(service=Service('/usr/local/bin/chromedriver'), options=chrome_options)
     driver.get(url)
 
     # Find the search box element based on the URL
