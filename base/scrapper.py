@@ -12,6 +12,16 @@ def scraper(url, search_term):
     # Configure Chrome options
     chrome_options = Options()
     chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--remote-debugging-port=9222")
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-setuid-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument("--disable-extensions")
+    chrome_options.add_argument("--single-process")
+    chrome_options.add_argument("--lang=en_US")
+    chrome_options.add_argument("accept-language=en-US")
+    chrome_options.add_experimental_option('prefs', {'intl.accept_language': 'en,en_US'})
+    chrome_options.add_argument("--lang=en-GB")
 
     # Initialize Chrome webdriver with options
     #driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
