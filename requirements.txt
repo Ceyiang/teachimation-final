@@ -59,7 +59,7 @@ soupsieve
 sqlparse
 tensorboard
 tensorboard-data-server
-tensorflow
+tensorflow[and-cuda]=2.12
 tensorflow-estimator
 tensorflow-io-gcs-filesystem
 termcolor
